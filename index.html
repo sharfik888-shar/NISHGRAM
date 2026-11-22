@@ -1,107 +1,145 @@
 <!DOCTYPE html><html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>NISH GRAM</title>
 <style>
-:root{--bg:#0b0f1a;--cd:#141a2b;--v:#7c5cff;--c:#22d3ee;--p:#ff6bd6;--mt:#8892ad}
+:root{--bg:#0e1621;--cd:#17212b;--v:#7c5cff;--c:#22d3ee;--mt:#8892ad}
 *{box-sizing:border-box;margin:0;-webkit-tap-highlight-color:transparent}
 body{background:#04060c;color:#eef;font:15px system-ui,sans-serif;display:flex;justify-content:center}
 #app{width:100%;max-width:480px;height:100dvh;background:var(--bg);position:relative;overflow:hidden;display:flex;flex-direction:column}
 .bub{position:absolute;bottom:-60px;border-radius:50%;background:radial-gradient(circle at 30% 30%,#fff5,#7c5cff22);animation:up linear infinite;pointer-events:none}
 @keyframes up{to{transform:translateY(-120dvh)}}
 @keyframes mv{50%{background-position:100% 50%}}
+@keyframes fly{to{transform:translateX(130vw) translateY(-40px)}}
+.pl{position:absolute;left:-60px;fill:#000;opacity:.35;animation:fly linear infinite;pointer-events:none}
 .av{border-radius:50%;display:grid;place-items:center;font-weight:700;color:#fff;flex:none;background:linear-gradient(135deg,var(--a),var(--b),var(--a));background-size:300% 300%;animation:mv 6s ease infinite}
+.av svg{width:55%;height:55%;fill:none;stroke:#fff;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
 .scr{flex:1;display:flex;flex-direction:column;padding:24px;position:relative;z-index:1;overflow:auto}
-h1{font-size:30px;letter-spacing:1px}h2{font-size:22px}
-.mt{color:var(--mt)}
-.btn{background:linear-gradient(90deg,var(--v),var(--c));border:0;color:#fff;font:600 16px system-ui;padding:14px;border-radius:14px;width:100%;margin-top:12px}
-.btn.g{background:#ffffff14}
-input{width:100%;background:#ffffff0f;border:1px solid #ffffff22;color:#fff;padding:14px;border-radius:12px;font-size:16px;margin-top:10px}
+h1{font-size:30px;letter-spacing:1px}h2{font-size:21px}.mt{color:var(--mt)}
+.btn{background:linear-gradient(90deg,var(--v),var(--c));border:0;color:#fff;font:600 16px system-ui;padding:14px;border-radius:14px;width:100%;margin-top:12px}.btn.g{background:#ffffff14}
+input{width:100%;background:#ffffff0f;border:1px solid #ffffff22;color:#fff;padding:13px;border-radius:14px;font-size:16px;margin-top:10px}
 .err{color:#ff6b7a;margin-top:8px;min-height:20px}
-.tabs{display:flex;background:#ffffff0f;border-radius:12px;padding:4px;margin:16px 0}
-.tabs b{flex:1;text-align:center;padding:10px;border-radius:9px;font-weight:600}.tabs b.on{background:var(--v)}
+.tabs{display:flex;background:#ffffff0f;border-radius:12px;padding:4px;margin:16px 0}.tabs b{flex:1;text-align:center;padding:10px;border-radius:9px;font-weight:600}.tabs b.on{background:var(--v)}
 .dots{display:flex;gap:6px;justify-content:center;margin:18px 0}.dots i{width:8px;height:8px;border-radius:4px;background:#fff3}.dots i.on{width:24px;background:var(--c)}
-.hd{padding:14px 18px;display:flex;align-items:center;gap:12px;z-index:1;position:relative}
+.hd{padding:14px 18px;display:flex;align-items:center;gap:10px;z-index:1;position:relative}
 .list{flex:1;overflow:auto;position:relative;z-index:1}
-.row{display:flex;gap:12px;padding:12px 18px;align-items:center}.row:active{background:#ffffff0a}
-.row div.f{flex:1;min-width:0}.row small{color:var(--mt);display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.row{display:flex;gap:12px;padding:10px 16px;align-items:center}.row:active{background:#ffffff0a}
+.row .f{flex:1;min-width:0}.row b{display:block}.row small{color:var(--mt);display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-top:2px}
+.t{font-size:12px;color:var(--mt)}.bdg{background:var(--v);border-radius:12px;padding:1px 8px;font-size:12px;display:inline-block;margin-top:4px}
+.sec{padding:10px 18px 2px;color:var(--c);font-weight:600;font-size:13px}
 nav{display:flex;background:#0d1322;border-top:1px solid #ffffff14;padding-bottom:env(safe-area-inset-bottom);z-index:2}
-nav b{flex:1;text-align:center;padding:12px 0;color:var(--mt);font-size:12px}nav b.on{color:var(--c)}
+nav b{flex:1;text-align:center;padding:10px 0;color:var(--mt);font-size:12px}nav b.on{color:var(--c)}
 nav svg{display:block;margin:0 auto 3px;width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:2}
 .msgs{flex:1;overflow:auto;padding:12px;display:flex;flex-direction:column;gap:6px;z-index:1;position:relative}
-.m{max-width:78%;padding:9px 13px;border-radius:16px;background:var(--cd);align-self:flex-start;word-wrap:break-word}.m.me{align-self:flex-end;background:var(--v)}
+.m{max-width:78%;padding:8px 12px;border-radius:16px;background:#101a2ccc;align-self:flex-start;word-wrap:break-word}.m.me{align-self:flex-end;background:var(--v)}.m small{opacity:.6;font-size:11px}
 .send{display:flex;gap:8px;padding:10px;z-index:1;position:relative}.send input{margin:0}.send .btn{width:70px;margin:0}
 .grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;padding:12px}
-.gf{background:var(--cd);border-radius:16px;padding:10px 4px;text-align:center;font-size:12px}.gf svg{width:60px;height:60px}.gf small{color:var(--c);display:block}
-.ban{height:210px;display:grid;place-items:center;text-align:center;position:relative;z-index:1}
-.pill{display:inline-block;background:var(--v);padding:8px 18px;border-radius:20px;font-size:20px;font-weight:700;margin:12px 0}
-.bar{display:flex;margin:10px 18px;background:#ffffff14;border-radius:10px;overflow:hidden;font-weight:600}.bar span{padding:10px 14px}.bar .fl{background:var(--v)}
+.gf{background:var(--cd);border-radius:16px;padding:10px 4px;text-align:center;font-size:12px}.gf small{color:var(--c);display:block;margin-top:2px}
+.gi{position:relative;width:70px;height:70px;margin:0 auto 4px}.gi svg,.gi img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain}
+.ban{padding:34px 12px 14px;text-align:center;position:relative;z-index:1}
+.bts{display:flex;gap:8px;margin-top:18px}.bts button{flex:1;border:0;color:#fff;background:#0004;border-radius:14px;padding:12px 4px;font-size:13px;font-weight:600}
+.card{background:var(--cd);margin:12px;border-radius:16px;padding:6px 16px}.card p{padding:10px 0}.card small{display:block;color:var(--mt)}
+.pill{display:inline-block;background:var(--v);padding:6px 16px;border-radius:20px;font-size:18px;font-weight:700}
+.bar{display:flex;margin:10px 12px;background:#ffffff14;border-radius:10px;overflow:hidden;font-weight:600}.bar span{padding:10px 14px}.bar .fl{background:var(--v)}
+.cd{display:flex;gap:10px;justify-content:center;padding:6px 0 2px}.cd i{width:30px;height:30px;border-radius:50%}
 .sh{position:absolute;inset:0;background:#000a;z-index:9;display:flex;align-items:flex-end}.sh>div{background:var(--cd);width:100%;padding:24px;border-radius:24px 24px 0 0}
-.sh p{margin:12px 0}.pl{color:#4ade80;font-weight:700}.mi{color:#ff6b7a;font-weight:700}
+.sh p{margin:12px 0}.pls{color:#4ade80;font-weight:700}.mi{color:#ff6b7a;font-weight:700}
 </style></head><body><div id="app"></div>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
 <script>
 const SB_URL="https://agtjhlzcqrjybgmddtln.supabase.co",SB_KEY="sb_publishable_-4Baj4J76V6gripwDhncqw_sHGRE083";
 const sb=supabase.createClient(SB_URL,SB_KEY);
-const E=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
-let me=null,scr='ob',sl=0,tab=0,chat=null,sheet=0,err='',mode='reg';
-const CUR='◆',NAME='Ниш';
+const E=s=>String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const ls=(k,v)=>{try{if(v===undefined)return JSON.parse(localStorage.getItem(k));localStorage.setItem(k,JSON.stringify(v))}catch(e){}};
+let me=null,scr='load',sl=0,tab=0,chat=null,sheet=0,err='',mode='reg',Q='',SR='',pal=0,ch=null,rq=0;
+const NAME='Ниш';
+/* ССЫЛКИ НА КАРТИНКИ NFT: можно заменить своими, например GI['Plush Pepe']='https://...' */
+const IB='https://nft.fragment.com/gift/',IX='.medium.jpg',GI={};
+const gimg=n=>GI[n]||IB+n.toLowerCase().replace(/[^a-z0-9]/g,'')+'-1'+IX;
 const G="Plush Pepe,Durov's Cap,Heart Locket,Precious Peach,Heroic Helmet,Nail Bracelet,Perfume Bottle,Astral Shard,Gem Signet,Mini Oscar,Scared Cat,Loot Bag,Bonded Ring,Genie Lamp,Swiss Watch,Eternal Rose,Neko Helmet,Electric Skull,Diamond Ring,Love Potion,Top Hat,Vintage Cigar,Signet Ring,Toy Bear,Sharp Tongue,Magic Potion,Kissed Frog,Voodoo Doll,Trapped Heart,Spiced Wine,Jelly Bunny,Light Sword,Cookie Heart,Jack-in-the-Box,Snake Box,Evil Eye,Ion Gem,B-Day Candle,Berry Box,Bunny Muffin,Candy Cane,Crystal Ball,Desk Calendar,Easter Egg,Flying Broom,Hex Pot,Holiday Drink,Homemade Cake,Hypno Lollipop,Ginger Cookie,Lol Pop,Lunar Snake,Party Sparkler,Pet Snake,Record Player,Restless Jar,Sakura Flower,Santa Hat,Sleigh Bell,Snow Globe,Snow Mittens,Spy Agaric,Star Notepad,Tama Gadget,Winter Wreath,Xmas Stocking,Big Year,Skull Flower,Witch Hat,Whip Cupcake,Joyful Bundle,Jester Hat,Instant Ramen,Input Key,Ice Cream,Moon Pendant,Mad Pumpkin,Mighty Arm,Lush Bouquet,Low Rider,Hanging Star,Cupid Charm,Bow Tie,Bling Binky,Clover Pin".split(',');
 const price=i=>Math.max(25,Math.round(4000/Math.pow(i+1,.75)/5)*5);
-const hue=s=>[...s].reduce((a,c)=>(a*31+c.charCodeAt(0))%360,7);
-const av=(n,s)=>{const h=hue(n);return `<div class="av" style="--a:hsl(${h},85%,58%);--b:hsl(${h+70},85%,48%);width:${s}px;height:${s}px;font-size:${s/2.3}px">${E(n.replace('@','')[0]||'?').toUpperCase()}</div>`};
-const gart=(n,i)=>{const h=hue(n),k=i%3,sh=k==0?'<polygon points="30,4 54,22 46,54 14,54 6,22"/>':k==1?'<circle cx="30" cy="30" r="25"/>':'<polygon points="30,3 38,22 58,24 43,38 48,57 30,46 12,57 17,38 2,24 22,22"/>';
- return `<svg viewBox="0 0 60 60"><defs><radialGradient id="g${i}" cx=".3" cy=".25"><stop offset="0" stop-color="hsl(${h},95%,80%)"/><stop offset="1" stop-color="hsl(${h+50},80%,40%)"/></radialGradient></defs><g fill="url(#g${i})" stroke="#fff6" stroke-width="1.5">${sh}</g></svg>`};
-const CH=[['NISH GRAM Общий чат','room:general','Общий чат для всех'],['Рынок подарков','room:market','Обсуждай NFT'],['Саппорт','room:support','Вопросы по NISH GRAM']];
-const ls=(k,v)=>{try{if(v===undefined)return JSON.parse(localStorage.getItem(k));localStorage.setItem(k,JSON.stringify(v))}catch(e){}};
-const CN=[['Nish Official',12400],['Рынок NFT',8300],['Мемы',5100],['Игры',3900]];
-const IC={c:'<svg viewBox="0 0 24 24"><path d="M4 5h16v11H9l-5 4z"/></svg>',k:'<svg viewBox="0 0 24 24"><path d="M3 11v3l14 6V5zM19 9v7"/></svg>',g:'<svg viewBox="0 0 24 24"><path d="M4 9h16v4H4zM6 13v8h12v-8M12 9v12M12 9c-4-5-7 0-3 0M12 9c4-5 7 0 3 0"/></svg>',p:'<svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-5 4-7 8-7s8 2 8 7"/></svg>'};
+const hue=s=>[...String(s)].reduce((a,c)=>(a*31+c.charCodeAt(0))%360,7);
+const fmt=n=>n>=1000?(n/1000).toFixed(1)+'K':n;
+const cry=(s=16)=>`<svg width="${s}" height="${s}" viewBox="0 0 24 24" style="vertical-align:-3px"><defs><linearGradient id="cg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#9ff3ff"/><stop offset="1" stop-color="#7c5cff"/></linearGradient></defs><path d="M12 2 20 9 12 22 4 9z" fill="url(#cg)"/><path d="M4 9h16M12 2l-3 7 3 13 3-13z" stroke="#fff9" fill="none" stroke-width=".8"/></svg>`;
+const chk=`<svg width="17" height="17" viewBox="0 0 24 24" style="vertical-align:-3px;margin-left:3px"><circle cx="12" cy="12" r="11" fill="#2ea6ff"/><path d="m7 12.5 3.5 3.5L17 9" stroke="#fff" stroke-width="2.5" fill="none"/></svg>`;
+const shield=n=>`<svg width="22" height="24" viewBox="0 0 24 26" style="vertical-align:-5px;margin-left:4px"><path d="M12 1 22 4v9c0 6-4 10-10 12C6 23 2 19 2 13V4z" fill="#fff"/><path d="M12 3.500 20 6v7c0 4.800-3 8-8 9.800C7 21 4 17.800 4 13V6z" fill="#e5383b"/><text x="12" y="16" text-anchor="middle" font-size="11" font-weight="700" fill="#fff">${n}</text></svg>`;
+const IC={news:'<path d="M3 11v3l14 6V5zM19 9v7"/>',bot:'<rect x="5" y="8" width="14" height="11" rx="3"/><path d="M12 8V4M9 13h.01M15 13h.01"/>',shop:'<path d="M4 9h16l-1 11H5zM8 9a4 4 0 018 0"/>',support:'<path d="M4 14v-2a8 8 0 0116 0v2M4 14h3v5H4zM17 14h3v5h-3z"/>',people:'<circle cx="9" cy="9" r="3"/><circle cx="17" cy="10" r="2.5"/><path d="M3 20c0-4 3-6 6-6s6 2 6 6M15 15c3 0 6 1 6 5"/>',game:'<rect x="3" y="8" width="18" height="10" rx="5"/><path d="M8 11v4M6 13h4M16 12h.01M18 14h.01"/>',music:'<path d="M9 18V6l10-2v12"/><circle cx="7" cy="18" r="2.5"/><circle cx="17" cy="16" r="2.5"/>',chart:'<path d="M4 19V5M4 19h16M8 15l3-4 3 2 5-6"/>'};
+const NI={c:'<svg viewBox="0 0 24 24"><path d="M4 5h16v11H9l-5 4z"/></svg>',k:'<svg viewBox="0 0 24 24"><path d="M3 11v3l14 6V5zM19 9v7"/></svg>',g:'<svg viewBox="0 0 24 24"><path d="M4 9h16v4H4zM6 13v8h12v-8M12 9v12M12 9c-4-5-7 0-3 0M12 9c4-5 7 0 3 0"/></svg>',p:'<svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-5 4-7 8-7s8 2 8 7"/></svg>'};
+const CH=[{n:'NISH GRAM Новости',k:'room:ch_news',i:'news',h:250,o:1,ch:1,l:'Официальный канал NISH GRAM'},{n:'Nish Bot',k:'bot:nish',i:'bot',h:190,bot:1,l:'Напиши /start'},{n:'Общий чат',k:'room:general',i:'people',h:150,l:'Общий чат для всех'},{n:'Рынок подарков',k:'room:market',i:'shop',h:330,l:'Покупай и меняй NFT'},{n:'Саппорт',k:'room:support',i:'support',h:20,l:'Вопросы по NISH GRAM'},{n:'NFT дайджест',k:'room:ch_nft',i:'chart',h:45,ch:1,o:1,l:'Новости NFT-подарков'},{n:'Игры',k:'room:games',i:'game',h:280,l:'Обсуждаем игры'},{n:'Музыка',k:'room:music',i:'music',h:210,l:'Что слушаешь?'}];
+const av=(n,s,img)=>{const h=hue(n);return img?`<div class="av" style="width:${s}px;height:${s}px;background:url(${img}) center/cover;animation:none"></div>`:`<div class="av" style="--a:hsl(${h},85%,58%);--b:hsl(${h+70},85%,48%);width:${s}px;height:${s}px;font-size:${s/2.3}px">${E(String(n).replace('@','')[0]||'?').toUpperCase()}</div>`};
+const sysav=(i,h,s)=>`<div class="av" style="--a:hsl(${h},80%,55%);--b:hsl(${h+40},80%,42%);width:${s}px;height:${s}px"><svg viewBox="0 0 24 24">${IC[i]}</svg></div>`;
+const cav=(c,s)=>c.i?sysav(c.i,c.h,s):av(c.n,s,c.pf&&c.pf.avatar);
+const gart=(n,i)=>{const h=hue(n);return `<svg viewBox="0 0 60 60"><defs><radialGradient id="g${i}" cx=".3" cy=".25"><stop offset="0" stop-color="hsl(${h},95%,80%)"/><stop offset="1" stop-color="hsl(${h+50},80%,40%)"/></radialGradient></defs><path d="M30 4 54 22 46 54H14L6 22z" fill="url(#g${i})"/></svg>`};
+const gi=(n,i)=>`<div class="gi">${gart(n,i)}<img src="${gimg(n)}" loading="lazy" onload="this.previousSibling.style.display='none'" onerror="this.remove()"></div>`;
+const planes=()=>Array.from({length:14},(_,i)=>`<svg class="pl" viewBox="0 0 24 24" style="top:${(i*53)%92}%;width:${18+i%4*9}px;animation-duration:${16+i*2}s;animation-delay:-${i*3}s"><path d="M2 12 22 3l-4 18-5-6-4 5v-6z"/></svg>`).join('');
+const bubbles=()=>Array.from({length:12},(_,i)=>`<i class="bub" style="left:${(i*37)%100}%;width:${20+i*6}px;height:${20+i*6}px;animation-duration:${9+i*2}s;animation-delay:-${i*2}s"></i>`).join('');
 const lvl=()=>Math.floor(me.rep/500)+1;
-function bubbles(){return Array.from({length:12},(_,i)=>`<i class="bub" style="left:${(i*37)%100}%;width:${20+i*6}px;height:${20+i*6}px;animation-duration:${9+i*2}s;animation-delay:-${i*2}s"></i>`).join('')}
-function R(){const a=document.getElementById('app');let h=bubbles();
- if(scr=='ob'){const T=[['Добро пожаловать','NISH GRAM — быстрый и красивый мессенджер.'],['Чаты и каналы','Общайся, подписывайся, читай новости.'],['Подарки NFT','Покупай, дари и обменивай коллекционные подарки.'],['Репутация','Растёт от активности. Поднимай уровень!']][sl];
+const tm=d=>{d=new Date(d);return d.toDateString()==new Date().toDateString()?d.toLocaleTimeString('ru',{hour:'2-digit',minute:'2-digit'}):d.toLocaleDateString('ru',{day:'numeric',month:'short'})};
+const rw=(a,t,s,ex,oc)=>`<div class="row" onclick="${oc}">${a}<div class="f"><b>${t}</b><small>${s}</small></div>${ex||''}</div>`;
+const seen=()=>ls('seen_'+me.id)||{};
+const unread=c=>{const s=seen()[c.k]||0;return c.bot?0:c.m.filter(m=>m.id>s&&m.sender!=me.id).length};
+const lastTxt=c=>{if(!c.m.length)return E(c.l||'Нет сообщений');const m=c.m.at(-1);return (m.sender==me.id?'Вы: ':(c.k.startsWith('room:')&&!c.ch?E(m.sname||'')+': ':''))+E(m.body)};
+const chRow=(c,i)=>{const u=unread(c);return rw(cav(c,56),E(c.n)+(c.o?chk:''),lastTxt(c),`<div style="text-align:right"><div class="t">${c.m.length&&c.m.at(-1).created_at?tm(c.m.at(-1).created_at):''}</div>${u?`<span class="bdg">${u}</span>`:''}</div>`,`openChat(${i})`)};
+function R(){const a=document.getElementById('app');a.style.background=scr=='app'&&chat!==null?'linear-gradient(160deg,#243a66,#3d2b6b)':'';let h='';
+ if(scr=='load')h=bubbles()+`<div class="scr" style="justify-content:center;align-items:center"><h1>NISH GRAM</h1></div>`;
+ else if(scr=='ob'){h=bubbles();const T=[['Добро пожаловать','NISH GRAM — быстрый и красивый мессенджер.'],['Чаты и каналы','Общайся, подписывайся, читай новости.'],['Подарки NFT','Покупай, дари и обменивай коллекционные подарки.'],['Репутация','Растёт от активности. Поднимай уровень!']][sl];
   h+=`<div class="scr" style="justify-content:center;text-align:center;align-items:center">${av('Nish'+sl,140)}<h1 style="margin-top:28px">${T[0]}</h1><p class="mt" style="margin-top:10px">${T[1]}</p><div class="dots">${[0,1,2,3].map(i=>`<i class="${i==sl?'on':''}"></i>`).join('')}</div><button class="btn" onclick="nx()">${sl==3?'Начать':'Далее'}</button></div>`}
- else if(scr=='au'){h+=`<div class="scr" style="justify-content:center"><h1 style="text-align:center">NISH GRAM</h1><div class="tabs"><b class="${mode=='reg'?'on':''}" onclick="mode='reg';err='';R()">Регистрация</b><b class="${mode=='in'?'on':''}" onclick="mode='in';err='';R()">Вход</b></div>
-  <input id="u" placeholder="@username (минимум 6 символов)" autocapitalize="off"><input id="p" type="password" placeholder="Пароль (минимум 6 символов)">${mode=='reg'?'<input id="e" placeholder="Почта (по желанию)">':''}<div class="err">${err}</div><button class="btn" onclick="auth()">${mode=='reg'?'Создать аккаунт':'Войти'}</button></div>`}
- else if(chat!==null){const c=me.chats[chat];h+=`<div class="hd" style="border-bottom:1px solid #ffffff14"><b onclick="chat=null;R()" style="font-size:24px">‹</b>${av(c.n,40)}<b>${E(c.n)}</b></div><div class="msgs" id="ms">${c.m.map(m=>`<div class="m ${m.sender==me.id?'me':''}">${m.sender!=me.id&&c.k.startsWith('room:')?`<small class="mt">${E(m.sname||'')}</small><br>`:''}${E(m.body)}</div>`).join('')||'<p class="mt" style="margin:auto">Напиши первое сообщение</p>'}</div><div class="send"><input id="t" placeholder="Сообщение" onkeydown="event.key=='Enter'&&snd()"><button class="btn" onclick="snd()">Ок</button></div>`}
+ else if(scr=='au'){h=bubbles()+`<div class="scr" style="justify-content:center"><h1 style="text-align:center">NISH GRAM</h1><div class="tabs"><b class="${mode=='reg'?'on':''}" onclick="mode='reg';err='';R()">Регистрация</b><b class="${mode=='in'?'on':''}" onclick="mode='in';err='';R()">Вход</b></div><input id="u" placeholder="@username (минимум 6 символов)" autocapitalize="off"><input id="p" type="password" placeholder="Пароль (минимум 6 символов)">${mode=='reg'?'<input id="e" placeholder="Почта (по желанию)">':''}<div class="err">${err}</div><button class="btn" onclick="auth()">${mode=='reg'?'Создать аккаунт':'Войти'}</button></div>`}
+ else if(chat!==null){const c=me.chats[chat],ro=c.ch&&!me.owner;h=planes()+`<div class="hd" style="background:#0d1322cc"><b onclick="chat=null;R()" style="font-size:26px">‹</b>${cav(c,40)}<b>${E(c.n)}${c.o||(c.pf&&c.pf.is_owner)?chk:''}</b></div><div class="msgs" id="ms">${c.m.map(m=>`<div class="m ${m.sender==me.id?'me':''}">${m.sender!=me.id&&c.k.startsWith('room:')&&!c.ch?`<small>${E(m.sname)}</small><br>`:''}${E(m.body)}</div>`).join('')||'<p class="mt" style="margin:auto">Сообщений пока нет</p>'}</div>${ro?'<p class="mt" style="text-align:center;padding:14px;z-index:1;position:relative">В канале пишет только владелец</p>':`<div class="send"><input id="t" placeholder="Сообщение" onkeydown="event.key=='Enter'&&snd()"><button class="btn" onclick="snd()">Ок</button></div>`}`}
  else{let b='';
-  if(tab==0)b=`<div class="row" onclick="newDm()"><div class="av" style="--a:#7c5cff;--b:#22d3ee;width:52px;height:52px;font-size:26px">+</div><div class="f"><b>Написать по @юзернейму</b></div></div>`+me.chats.map((c,i)=>`<div class="row" onclick="openChat(${i})">${av(c.n,52)}<div class="f"><b>${E(c.n)}</b><small>${E(c.m.length?c.m.at(-1).body:c.l)}</small></div></div>`).join('');
-  if(tab==1)b=CN.map((c,i)=>`<div class="row">${av(c[0],52)}<div class="f"><b>${c[0]}</b><small>${c[1]} подписчиков</small></div><button class="btn g" style="width:auto;margin:0;padding:8px 14px" onclick="sub(${i})">${me.subs.includes(i)?'Вы подписаны':'Подписаться'}</button></div>`).join('');
-  if(tab==2)b=`<div style="padding:14px 18px"><h2>Подарки NFT</h2><p class="mt">Баланс: <b style="color:var(--c)">${CUR} ${me.bal}</b> · В коллекции: ${me.gifts.length}</p></div><div class="grid">${G.map((n,i)=>`<div class="gf" onclick="buy(${i})">${gart(n,i)}<div>${n}</div><small>${CUR} ${price(i)}</small></div>`).join('')}</div>`+(me.gifts.length?`<div style="padding:0 18px"><h2>Моя коллекция</h2><p class="mt">Нажми, чтобы обменять на ${NAME}ы (85%)</p></div><div class="grid">${me.gifts.map((g,j)=>`<div class="gf" onclick="sell(${j})">${gart(G[g.gift],g.gift+200)}<div>${G[g.gift]}</div></div>`).join('')}</div>`:'');
-  if(tab==3){const L=lvl();b=`<div class="ban av" style="--a:#7c5cff;--b:#ff6bd6;border-radius:0"><div>${av(me.u,96)}<h2 style="margin-top:10px">${E(me.u)}</h2><span class="mt" style="color:#fffa">в сети</span></div></div><div style="text-align:center"><span class="pill" onclick="sheet=1;R()">${(me.rep/1000).toFixed(1)}K<small> / ${(L*0.5).toFixed(1)}K</small></span></div><div class="bar"><span class="fl" style="width:${Math.min(100,(me.rep%500)/5)}%;min-width:110px">Уровень ${L}</span><span style="margin-left:auto">Уровень ${L+1}</span></div><div style="padding:14px 18px"><p class="mt">Баланс</p><h2>${CUR} ${me.bal} ${NAME}ов</h2><button class="btn g" onclick="bonus()">Ежедневный бонус +100</button><button class="btn g" onclick="sb.auth.signOut();me=null;scr='au';R()">Выйти</button></div>`}
-  h+=`<div class="hd"><h2>${['Чаты','Каналы','Подарки','Профиль'][tab]}</h2></div><div class="list">${b}</div><nav>${['c','k','g','p'].map((k,i)=>`<b class="${tab==i?'on':''}" onclick="tab=${i};R()">${IC[k]}${['Чаты','Каналы','Подарки','Профиль'][i]}</b>`).join('')}</nav>`;
-  if(sheet)h+=`<div class="sh" onclick="sheet=0;R()"><div onclick="event.stopPropagation()"><h2 style="text-align:center">Рейтинг</h2><p class="mt" style="text-align:center">Рейтинг отражает вашу активность в NISH GRAM. На него влияют:</p><p><b>Подарки от NISH GRAM</b><br><span class="pl">плюс</span> 100% ${NAME}ов, потраченных на подарки.</p><p><b>Маркет и посты</b><br><span class="pl">плюс</span> 20% ${NAME}ов за покупки у пользователей и платные посты.</p><p><b>Возвраты и обмены</b><br><span class="mi">минус</span> 85% от стоимости обменянных подарков.</p><button class="btn">Понятно</button></div></div>`}
+  if(tab==0)b=`<div style="padding:0 14px 6px"><input id="q" value="${E(Q)}" placeholder="Поиск чатов, людей, каналов, ботов" oninput="srch(this.value)" style="margin-top:0"></div><div id="sr">${SR}</div><div id="cl" style="${Q?'display:none':''}">${me.chats.map(chRow).join('')}</div>`;
+  if(tab==1)b=me.chats.map((c,i)=>c.ch?rw(cav(c,52),E(c.n)+(c.o?chk:''),'Канал',`<button class="btn g" style="width:auto;margin:0;padding:8px 14px;font-size:13px" onclick="event.stopPropagation();sub('${c.k}')">${me.subs.includes(c.k)?'Вы подписаны':'Подписаться'}</button>`,`openChat(${i})`):'').join('');
+  if(tab==2)b=`<div style="padding:6px 18px"><h2>Подарки NFT</h2><p class="mt">Баланс: <b style="color:var(--c)">${cry()} ${me.bal}</b> · В коллекции: ${me.gifts.length}</p></div><div class="grid">${G.map((n,i)=>`<div class="gf" onclick="buy(${i})">${gi(n,i)}<div>${E(n)}</div><small>${cry(13)} ${price(i)}</small></div>`).join('')}</div>`+(me.gifts.length?`<div style="padding:0 18px"><h2>Моя коллекция</h2><p class="mt">Нажми, чтобы обменять на ${NAME}и (85%)</p></div><div class="grid">${me.gifts.map((g,j)=>`<div class="gf" onclick="sell(${j})">${gi(G[g.gift],g.gift+200)}<div>${E(G[g.gift])}</div></div>`).join('')}</div>`:'');
+  if(tab==3){const L=lvl(),H=me.bg;b=`<div class="ban" style="background:radial-gradient(circle at 50% 22%,hsl(${H} 75% 58%),hsl(${H} 65% 30%))">${av(me.u,96,me.avatar)}<h2 style="margin-top:10px">${E(me.u.replace('@',''))}${me.owner?chk:''}${shield(L)}</h2><span style="color:#fffa">в сети</span><div class="bts"><button onclick="pick()">Выбрать фото</button><button onclick="about()">Изменить</button><button onclick="pal=!pal;R()">Цвет фона</button></div>${pal?`<div class="cd" style="margin-top:12px">${[0,25,45,140,190,220,260,300,330].map(x=>`<i style="background:hsl(${x} 75% 50%)" onclick="setBg(${x})"></i>`).join('')}</div>`:''}</div>
+  <div class="card"><p>${E(me.u)}<small>Имя пользователя</small></p><p>${E(me.about||'Не указано')}<small>О себе</small></p><p>${cry(18)} ${me.bal} ${NAME}ей<small>Баланс</small></p></div>
+  <div style="text-align:center;margin-top:14px"><span class="pill" onclick="sheet=1;R()">${fmt(me.rep)} <small>/ ${fmt(L*500)}</small></span></div><div class="bar"><span class="fl" style="width:${Math.min(100,(me.rep%500)/5)}%;min-width:110px">Уровень ${L}</span><span style="margin-left:auto">Уровень ${L+1}</span></div>
+  <div style="padding:0 12px 20px"><button class="btn g" onclick="bonus()">Ежедневный бонус +100</button><button class="btn g" onclick="sb.auth.signOut();me=null;scr='au';R()">Выйти</button></div>`}
+  h=`<div class="hd"><h2>${['Чаты','Каналы','Подарки','Профиль'][tab]}</h2></div><div class="list">${b}</div><nav>${['c','k','g','p'].map((k,i)=>`<b class="${tab==i?'on':''}" onclick="tab=${i};R()">${NI[k]}${['Чаты','Каналы','Подарки','Профиль'][i]}</b>`).join('')}</nav>`;
+  if(sheet)h+=`<div class="sh" onclick="sheet=0;R()"><div onclick="event.stopPropagation()"><h2 style="text-align:center">Рейтинг</h2><p class="mt" style="text-align:center">Рейтинг отражает вашу активность в NISH GRAM. На него влияют:</p><p><b>Подарки от NISH GRAM</b><br><span class="pls">плюс</span> 100% ${NAME}ей, потраченных на подарки.</p><p><b>Возвраты и обмены</b><br><span class="mi">минус</span> 85% от стоимости обменянных подарков.</p><button class="btn">Понятно</button></div></div>`}
  a.innerHTML=h;const m=document.getElementById('ms');if(m)m.scrollTop=1e9}
-
-let ch=null;
 async function loadMe(uid){const{data:p}=await sb.from('profiles').select('*').eq('id',uid).single();if(!p)return 0;
  const{data:g}=await sb.from('gifts').select('*').eq('owner',uid);
- const old=me&&me.chats,dm=ls('nish_dm_'+uid)||[];
- me={id:uid,u:p.username,bal:p.bal,rep:p.rep,gifts:g||[],subs:(me&&me.subs)||[],chats:old||[...CH.map(c=>({n:c[0],k:c[1],l:c[2],m:[]})),...dm.map(d=>({n:d.n,k:d.k,l:'Личный чат',m:[]}))]};
- if(!ch)ch=sb.channel('m').on('postgres_changes',{event:'INSERT',schema:'public',table:'messages'},x=>{const c=me&&me.chats.find(c=>c.k==x.new.chat);if(c&&!c.m.some(m=>m.id==x.new.id)){c.m.push(x.new);R()}}).subscribe();
+ const{data:ms}=await sb.from('messages').select('*').order('created_at',{ascending:false}).limit(300);
+ const chats=CH.map(c=>({...c,m:c.bot?[{id:'b0',sender:'bot',body:'Привет! Я Nish Bot. Команды: /start /balance /help'}]:[]}));const dm={};
+ (ms||[]).reverse().forEach(x=>{let c=chats.find(c=>c.k==x.chat);if(!c&&x.chat.startsWith('dm:'))c=dm[x.chat]=dm[x.chat]||{n:'Личный чат',k:x.chat,o2:x.chat.split(':').slice(1).find(i=>i!=uid),m:[]};if(c)c.m.push(x)});
+ const ids=Object.values(dm).map(d=>d.o2);if(ids.length){const{data:ps}=await sb.from('profiles').select('id,username,avatar,is_owner').in('id',ids);(ps||[]).forEach(q=>Object.values(dm).forEach(d=>{if(d.o2==q.id){d.n=q.username;d.pf=q}}))}
+ const old=me&&me.chats?me.chats.filter(c=>c.k.startsWith('dm:')&&!dm[c.k]&&!c.m.length):[];
+ me={id:uid,u:p.username,bal:p.bal,rep:p.rep,avatar:p.avatar,bg:p.bg,about:p.about,owner:p.is_owner,gifts:g||[],subs:(me&&me.subs)||ls('subs_'+uid)||[],chats:[...chats,...Object.values(dm),...old]};
+ me.chats.sort((a,b)=>(b.m.length&&b.m.at(-1).created_at?+new Date(b.m.at(-1).created_at):0)-(a.m.length&&a.m.at(-1).created_at?+new Date(a.m.at(-1).created_at):0));
+ if(!ls('seen_'+uid)){const s={};me.chats.forEach(c=>{if(c.m.length&&!c.bot)s[c.k]=c.m.at(-1).id});ls('seen_'+uid,s)}
+ if(!ch)ch=sb.channel('m').on('postgres_changes',{event:'INSERT',schema:'public',table:'messages'},x=>{if(!me)return;const c=me.chats.find(c=>c.k==x.new.chat);if(c){if(!c.m.some(m=>m.id==x.new.id)){c.m.push(x.new);if(chat!==null&&me.chats[chat]===c)mark(c);R()}}else if(x.new.chat.includes(me.id))loadMe(me.id).then(R)}).subscribe();
  return 1}
-function nx(){if(sl<3)sl++;else scr='au';R()}
+function mark(c){if(c.m.length&&!c.bot){const s=seen();s[c.k]=c.m.at(-1).id;ls('seen_'+me.id,s)}}
+function nx(){if(sl<3)sl++;else{ls('ob',1);scr='au'}R()}
+const fail=t=>{err=t;R();return 0};
 async function auth(){const u=document.getElementById('u').value.trim().replace(/^@?/,'@'),p=document.getElementById('p').value,k=u.slice(1).toLowerCase(),em=k+'@nishgram.app';
- if(!/^@[a-zA-Z0-9_]{6,}$/.test(u))return fail('Юзернейм: @ и минимум 6 символов (буквы, цифры, _)');
+ if(!/^@([a-zA-Z0-9_]{6,}|[nN][iI][sS][hH])$/.test(u))return fail('Юзернейм: @ и минимум 6 символов (буквы, цифры, _)');
  if(p.length<6)return fail('Пароль: минимум 6 символов');
- let r;if(mode=='reg')r=await sb.auth.signUp({email:em,password:p,options:{data:{username:u,email_opt:(document.getElementById('e')||{}).value||''}}});
- else r=await sb.auth.signInWithPassword({email:em,password:p});
+ let r;if(mode=='reg')r=await sb.auth.signUp({email:em,password:p,options:{data:{username:u,email_opt:(document.getElementById('e')||{}).value||''}}});else r=await sb.auth.signInWithPassword({email:em,password:p});
  if(r.error)return fail(/already|registered/i.test(r.error.message)?'Этот юзернейм занят':/invalid/i.test(r.error.message)?'Неверный юзернейм или пароль':r.error.message);
  if(!r.data.session)return fail('Включи вход без подтверждения почты в Supabase');
  await start(r.data.user.id)}
-async function start(uid){if(!await loadMe(uid))return fail('Профиль не найден');err='';scr='app';tab=0;R()}
-function fail(t){err=t;R();return 0}
-async function openChat(i){chat=i;const c=me.chats[i];R();const{data}=await sb.from('messages').select('*').eq('chat',c.k).order('created_at',{ascending:false}).limit(100);c.m=(data||[]).reverse();R()}
+async function start(uid){if(!await loadMe(uid)){scr='au';return fail('Профиль не найден')}err='';scr='app';tab=0;R()}
+async function openChat(i){chat=i;Q='';SR='';const c=me.chats[i];mark(c);R();if(c.bot)return;const{data}=await sb.from('messages').select('*').eq('chat',c.k).order('created_at',{ascending:false}).limit(100);if(data){c.m=data.reverse();mark(c);R()}}
 async function snd(){const i=document.getElementById('t'),v=i.value.trim();if(!v)return;i.value='';const c=me.chats[chat];
+ if(c.bot){c.m.push({id:'l'+Date.now(),sender:me.id,body:v});R();const x=c;setTimeout(()=>{x.m.push({id:'l'+Date.now(),sender:'bot',body:v=='/start'?'Привет, '+me.u+'! Я Nish Bot.':v=='/balance'?'Баланс: '+me.bal+' '+NAME+'ей':v=='/help'?'Команды: /start /balance /help':'Не понимаю. Напиши /help'});R()},600);return}
  const{data,error}=await sb.from('messages').insert({chat:c.k,sname:me.u,body:v}).select().single();if(error)return alert(error.message);
- if(!c.m.some(m=>m.id==data.id))c.m.push(data);R();const t=document.getElementById('t');t&&t.focus()}
-async function newDm(){let n=prompt('Юзернейм собеседника (@...)');if(!n)return;n=n.trim().replace(/^@?/,'@');
- const{data}=await sb.from('profiles').select('id,username').ilike('username',n).maybeSingle();if(!data)return alert('Пользователь не найден');
- const k='dm:'+[me.id,data.id].sort().join(':');let i=me.chats.findIndex(c=>c.k==k);
- if(i<0){me.chats.push({n:data.username,k,l:'Личный чат',m:[]});i=me.chats.length-1;ls('nish_dm_'+me.id,me.chats.filter(c=>c.k.startsWith('dm:')).map(c=>({n:c.n,k:c.k})))}
- openChat(i)}
-function sub(i){const j=me.subs.indexOf(i);j<0?me.subs.push(i):me.subs.splice(j,1);R()}
+ if(!c.m.some(m=>m.id==data.id))c.m.push(data);mark(c);R();const t=document.getElementById('t');t&&t.focus()}
+async function srch(v){Q=v.trim();const my=++rq,cl=document.getElementById('cl'),sr=document.getElementById('sr');cl.style.display=Q?'none':'';if(!Q){SR='';sr.innerHTML='';return}
+ const q=Q.toLowerCase().replace('@','');const loc=me.chats.map((c,i)=>[c,i]).filter(([c])=>c.n.toLowerCase().includes(q));
+ const part=(t,f)=>{const x=loc.filter(([c])=>f(c));return x.length?`<div class="sec">${t}</div>`+x.map(([c,i])=>chRow(c,i)).join(''):''};
+ let html=part('Чаты',c=>!c.ch&&!c.bot)+part('Каналы',c=>c.ch)+part('Боты',c=>c.bot);sr.innerHTML=SR=html;
+ const{data}=await sb.from('profiles').select('id,username,avatar,is_owner,rep').ilike('username','%'+q+'%').neq('id',me.id).limit(8);if(my!=rq)return;
+ if(data&&data.length)html+=`<div class="sec">Люди</div>`+data.map(p=>rw(av(p.username,56,p.avatar),E(p.username)+(p.is_owner?chk:''),'Уровень '+(Math.floor(p.rep/500)+1),'',`openDm('${p.id}')`)).join('');
+ if(!html)html='<p class="mt" style="text-align:center;padding:30px">Ничего не найдено</p>';sr.innerHTML=SR=html;window._ps=data||[]}
+async function openDm(id){const p=(window._ps||[]).find(x=>x.id==id);const k='dm:'+[me.id,id].sort().join(':');let i=me.chats.findIndex(c=>c.k==k);
+ if(i<0){me.chats.unshift({n:p.username,k,o2:id,pf:p,m:[]});i=0}openChat(i)}
+function sub(k){const j=me.subs.indexOf(k);j<0?me.subs.push(k):me.subs.splice(j,1);ls('subs_'+me.id,me.subs);R()}
 async function act(fn,a){const{error}=await sb.rpc(fn,a);if(error)return alert(error.message);await loadMe(me.id);R()}
-function buy(i){const p=price(i);if(me.bal<p)return alert('Не хватает '+NAME+'ов');if(confirm(G[i]+' за '+p+'?'))act('buy_gift',{g:i,cost:p})}
+function buy(i){const p=price(i);if(me.bal<p)return alert('Не хватает '+NAME+'ей');if(confirm(G[i]+' за '+p+'?'))act('buy_gift',{g:i,cost:p})}
 function sell(j){const g=me.gifts[j];if(confirm('Обменять '+G[g.gift]+' на '+Math.floor(g.cost*.85)+'?'))act('sell_gift',{gid:g.id})}
-function bonus(){act('daily_bonus',{})}
-sb.auth.getSession().then(async({data})=>{if(data.session)await start(data.session.user.id)});
+const bonus=()=>act('daily_bonus',{});
+async function setProf(){const{error}=await sb.rpc('set_profile',{av:me.avatar||'',bgc:me.bg,ab:me.about||''});if(error)alert(error.message);R()}
+function setBg(h){me.bg=h;setProf()}
+function about(){const t=prompt('О себе',me.about||'');if(t!==null){me.about=t.slice(0,200);setProf()}}
+function pick(){const f=document.createElement('input');f.type='file';f.accept='image/*';f.onchange=()=>{const r=new FileReader();r.onload=()=>{const im=new Image();im.onload=()=>{const c=document.createElement('canvas');c.width=c.height=256;const s=Math.min(im.width,im.height);c.getContext('2d').drawImage(im,(im.width-s)/2,(im.height-s)/2,s,s,0,0,256,256);me.avatar=c.toDataURL('image/jpeg',.8);setProf()};im.src=r.result};r.readAsDataURL(f.files[0])};f.click()}
 R();
+sb.auth.getSession().then(async({data})=>{if(data.session)await start(data.session.user.id);else{scr=ls('ob')?'au':'ob';R()}}).catch(()=>{scr='au';R()});
 </script></body></html>
